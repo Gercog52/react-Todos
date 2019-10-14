@@ -1,11 +1,22 @@
 .App {
   text-align: center;
 }
-
+.Name {
+  text-align: center;
+  font-family: Roboto,sans-serif;
+  color: orangered;
+  font-size: 60px;
+}
+* {
+  box-sizing: border-box;
+}
 .App-logo {
   height: 40vmin;
 }
-
+body {
+  padding: 15px;
+  background: #f4f4f4;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

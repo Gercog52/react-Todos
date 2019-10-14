@@ -1,0 +1,213 @@
+@media all and (max-width: 466px) {
+    body {
+        padding: 5px;
+    }
+    .formInput {
+        font-size: 20px !important;
+    }
+    .item {
+        font-size: 20px !important;
+    }
+    .btns {
+        padding: 0 5px !important;
+    }
+    .btns button {
+        padding: 4px 4px !important;
+    }
+    .info {
+        text-align: center;
+        font-size: 10px;
+        width: 45px;
+    }
+}
+
+.form {
+    max-width: 550px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.24);
+    margin-bottom: 150px;
+}
+.str {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform:rotate(90deg) translateY(-50%) translateX(-119%);
+    color: #e7e7e7;
+    font-size: 30px;
+}
+.fomsR {
+    position: relative;
+}
+.formInput {
+    max-width: 550px;
+    width: 100%;
+    height: 65px;
+    padding: 16px 16px 16px 60px;
+    margin: 0 auto;
+    font-size: 24px;
+    border: none;
+    outline: none;
+    box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+}
+.formInput::-webkit-input-placeholder {color:#cbcbcb;font-style: italic}
+.formInput::-moz-placeholder          {color:#cbcbcb;font-style: italic}
+.formInput:-moz-placeholder           {color:#cbcbcb;font-style: italic}
+.formInput:-ms-input-placeholder      {color:#cbcbcb;font-style: italic}
+.item + .item {
+    border-top: none;
+}
+.btns {
+    padding: 0 18px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #dadada;
+}
+.btns button {
+    background: transparent;
+    outline: none;
+    border: 1px solid transparent;
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+.btns button:hover {
+    cursor: pointer;
+    border: 1px solid rgba(240, 150, 90, 0.8);
+}
+.delTaskBtn span:after {
+    color: rgba(255, 69, 0, 0.54);
+    content: '×';
+    transition: 0.3s;
+}
+.delTaskBtn:hover span:after {
+    cursor: pointer;
+    color: orangered;
+}
+.delTaskBtn {
+    position: absolute;
+    top: 49%;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.delTaskBtn span {
+    font-size: 30px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    padding-bottom: 5px;
+}
+.item:hover .delTaskBtn{
+    display: flex;
+}
+
+.item {
+    border-top: 1px solid #dadada;
+    border-bottom: 1px solid #cbcbcb;
+    max-width: 550px;
+    width: 100%;
+    height: 65px;
+    padding: 16px 16px 16px 60px;
+    margin: 0 auto;
+    font-size: 24px;
+    line-height: 27px;
+    position: relative;
+}
+
+
+.act {
+    border: 1px solid #ff5c00 !important;
+}
+
+.taskBtn {
+    outline: none;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #dadada;
+    background: transparent;
+    left: 8px;
+    border-radius: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+.btns:after {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    content: '';
+    width: 95%;
+    height: 6px;
+    bottom: -8px;
+    background: white;
+    border-bottom: 1px solid #dadada;
+}
+.btns:before {
+    position: absolute;
+    content: '';
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 6px;
+    bottom: -14px;
+    background: white;
+    border-bottom: 1px solid #dadada;
+}
+.taskBtn span {
+    position: relative;
+    transform: rotate(5deg);
+}
+.taskBtn span:after {
+    left: 50%;
+    top: 50%;
+    transform: translateX(155%) translateY(-57%) rotate(38deg);
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 2px;
+    background: #00ff95;
+}
+.taskBtn span:before {
+    left: 50%;
+    top: 50%;
+    transform: translateX(-99%) translateY(150%) rotate(38deg);
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 2px;
+    background: #00ff95;
+}
+.taskTextAct span {
+    transition: 0.5s;
+}
+.taskTextDezebl span {
+    color: #dadada;
+    position: relative;
+    height: 34px;
+    display: inline-block;
+}
+.taskTextDezebl span:after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    left: 0;
+    height: 3px;
+    background: #dadada;
+
+}
+
+.taskBtn:hover {
+    cursor: pointer;
+}
