@@ -25,6 +25,7 @@
     max-width: 550px;
     margin: 0 auto;
     background: white;
+    -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.24);
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.24);
     margin-bottom: 150px;
 }
@@ -32,6 +33,8 @@
     position: absolute;
     top: 50%;
     left: 0;
+    -webkit-transform:rotate(90deg) translateY(-50%) translateX(-119%);
+    -ms-transform:rotate(90deg) translateY(-50%) translateX(-119%);
     transform:rotate(90deg) translateY(-50%) translateX(-119%);
     color: #e7e7e7;
     font-size: 30px;
@@ -48,6 +51,7 @@
     font-size: 24px;
     border: none;
     outline: none;
+    -webkit-box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
     box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
 }
 .formInput::-webkit-input-placeholder {color:#cbcbcb;font-style: italic}
@@ -61,8 +65,14 @@
     padding: 0 18px;
     width: 100%;
     height: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     position: relative;
     border-bottom: 1px solid #dadada;
@@ -81,6 +91,8 @@
 .delTaskBtn span:after {
     color: rgba(255, 69, 0, 0.54);
     content: '×';
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
     transition: 0.3s;
 }
 .delTaskBtn:hover span:after {
@@ -89,24 +101,39 @@
 }
 .delTaskBtn {
     position: absolute;
-    top: 49%;
+    top: 50%;
     right: 20px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
     width: 30px;
     height: 30px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     display: none;
 }
 .delTaskBtn span {
     font-size: 30px;
     font-weight: 600;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     vertical-align: middle;
     padding-bottom: 5px;
 }
 .item:hover .delTaskBtn{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
@@ -138,12 +165,16 @@
     left: 8px;
     border-radius: 50px;
     top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 
 }
 .btns:after {
     position: absolute;
     left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
     transform: translateX(-50%);
     content: '';
     width: 95%;
@@ -156,6 +187,8 @@
     position: absolute;
     content: '';
     left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
     transform: translateX(-50%);
     width: 90%;
     height: 6px;
@@ -165,11 +198,15 @@
 }
 .taskBtn span {
     position: relative;
+    -webkit-transform: rotate(5deg);
+    -ms-transform: rotate(5deg);
     transform: rotate(5deg);
 }
 .taskBtn span:after {
     left: 50%;
     top: 50%;
+    -webkit-transform: translateX(155%) translateY(-57%) rotate(38deg);
+    -ms-transform: translateX(155%) translateY(-57%) rotate(38deg);
     transform: translateX(155%) translateY(-57%) rotate(38deg);
     content: '';
     position: absolute;
@@ -180,6 +217,8 @@
 .taskBtn span:before {
     left: 50%;
     top: 50%;
+    -webkit-transform: translateX(-99%) translateY(150%) rotate(38deg);
+    -ms-transform: translateX(-99%) translateY(150%) rotate(38deg);
     transform: translateX(-99%) translateY(150%) rotate(38deg);
     content: '';
     position: absolute;
@@ -188,6 +227,8 @@
     background: #00ff95;
 }
 .taskTextAct span {
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
     transition: 0.5s;
 }
 .taskTextDezebl span {
@@ -200,6 +241,8 @@
     position: absolute;
     content: '';
     top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     width: 100%;
     left: 0;
