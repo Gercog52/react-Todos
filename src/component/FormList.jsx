@@ -12,14 +12,10 @@ const FormList = (props) => {
      * */
 
     let task = props.tasks.map(item => <Task actTask={props.actTask} deactTask={props.deactTask}
-<<<<<<< HEAD
           task={item} key={item.id} delTask={props.delTask}
           timer={props.timers.find(itemTam => itemTam.id===item.id) || true}
           newTimersThink={props.newTimersThink}
     /> );
-=======
-                                             task={item} key={item.id} delTask={props.delTask}/> );
->>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
     return (
         <div className={styles.form}>
             <FormInput items={(props.tasks.length>0)} addTaskThink={props.addTaskThink} addTask={props.addTask} />

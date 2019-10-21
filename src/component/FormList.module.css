@@ -136,7 +136,6 @@
     display: -ms-flexbox;
     display: flex;
 }
-<<<<<<< HEAD
 .BottomTimer {
     width: 23px;
     height: 23px;
@@ -209,9 +208,6 @@
 .hov:hover {
     cursor: pointer;
 }
-=======
-
->>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
 .item {
     border-top: 1px solid #dadada;
     border-bottom: 1px solid #cbcbcb;
@@ -224,7 +220,6 @@
     line-height: 27px;
     position: relative;
 }
-<<<<<<< HEAD
 .timerForm {
     display: flex;
     align-items: center;
@@ -233,9 +228,6 @@
     width: 30px;
     text-align: center
 }
-=======
-
->>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
 
 .act {
     border: 1px solid #ff5c00 !important;
@@ -282,7 +274,6 @@
     background: white;
     border-bottom: 1px solid #dadada;
 }
-<<<<<<< HEAD
 .item:hover .svg {
 }
 .songV {
@@ -382,8 +373,6 @@
     width: 16px;
     height: 16px;
 }
-=======
->>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
 .taskBtn span {
     position: relative;
     -webkit-transform: rotate(5deg);
@@ -418,22 +407,14 @@
     -webkit-transition: 0.5s;
     -o-transition: 0.5s;
     transition: 0.5s;
-<<<<<<< HEAD
     position: relative;
     height: 31px !important;
-=======
->>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
 }
 .taskTextDezebl span {
     color: #dadada;
     position: relative;
-<<<<<<< HEAD
     display: inline-block;
     height: 31px !important;
-=======
-    height: 34px;
-    display: inline-block;
->>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
 }
 .taskTextDezebl span:after {
     position: absolute;
@@ -446,10 +427,6 @@
     left: 0;
     height: 3px;
     background: #dadada;
-<<<<<<< HEAD
-=======
-
->>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
 }
 
 .taskBtn:hover {
