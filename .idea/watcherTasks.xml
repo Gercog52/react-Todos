@@ -21,6 +21,7 @@
       <option name="workingDir" value="$FileDir$" />
       <envs />
     </TaskOptions>
+<<<<<<< HEAD
     <TaskOptions isEnabled="true">
       <option name="arguments" value="$FileName$:$FileNameWithoutExtension$.css" />
       <option name="checkSyntaxErrors" value="true" />
@@ -41,5 +42,7 @@
       <option name="workingDir" value="$FileDir$" />
       <envs />
     </TaskOptions>
+=======
+>>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
   </component>
 </project>

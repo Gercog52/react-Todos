@@ -6,11 +6,14 @@ const ACT_TASK = 'ACT_TASK';
 const DEACT_TASK = 'DEACT_TASK';
 const DEL_DEACT_TASK = 'DEL_DEACT_TASK';
 const DELL_TASK = 'DELL_TASK';
+<<<<<<< HEAD
 const ADD_TIMER = 'ADD_TIMER';
 const STOP_TIMER = 'STOP_TIMER';
 const END_TIMER = 'END_TIMER';
 
 // dELL NOTACT TIMERS IS DELL_DEACT_TASK
+=======
+>>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
 
 export const  delDeactTask = () => {
     return {
@@ -63,6 +66,7 @@ export const addTask = (text) => {
         task: {
             text,
             act: true,
+<<<<<<< HEAD
             timer: false,
         }
     }
@@ -92,12 +96,18 @@ export const endTimer = (id) => {
     }
 };
 // add task + reset forms
+=======
+        }
+    }
+};
+>>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
 export const addTaskThink = (text, nameForm) => {
     return (dispach) => {
         dispach(addTask(text));
         dispach(reset(nameForm));
     }
 };
+<<<<<<< HEAD
 /*export const stopTimer = (id) => {
     return {
         type:STOP_TIMER,
@@ -131,6 +141,11 @@ export const newTimersThink = (time,id) => {
 
 console.log(JSON.parse(localStorage.getItem('state')));
 const startStore = /*JSON.parse(localStorage.getItem('state')) ||*/ {
+=======
+
+
+const startStore = {
+>>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
     data: {
         act: [],
         notAct: [],
@@ -140,11 +155,15 @@ const startStore = /*JSON.parse(localStorage.getItem('state')) ||*/ {
     itemsAct: 0,
     fullItems: 0,// id
     fullCarrentItems:0,
+<<<<<<< HEAD
     timers: [],
+=======
+>>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
 };
 
 const problem_reducer = (state = startStore, actions) => {
     switch (actions.type) {
+<<<<<<< HEAD
         /*case STOP_TIMER: {
             return {
                 ...state,
@@ -209,6 +228,8 @@ const problem_reducer = (state = startStore, actions) => {
                 }*/
             }
         }
+=======
+>>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
         case DELL_TASK: {
             let typeTask = false;
             return {
@@ -285,7 +306,10 @@ const problem_reducer = (state = startStore, actions) => {
                             return true
                         } else {
                             --current;
+<<<<<<< HEAD
                             // удалить таймера
+=======
+>>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
                             return false
                         }
                     }),

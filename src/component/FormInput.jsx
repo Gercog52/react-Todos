@@ -20,7 +20,11 @@ const FormInput = (props) => {
 
 const FormRedax = (props) => {
     return (
+<<<<<<< HEAD
         <form  className={styles.fomsR} onSubmit={props.handleSubmit}>
+=======
+        <form className={styles.fomsR} onSubmit={props.handleSubmit}>
+>>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
             <span className={styles.str} style={{display:(!props.items) && 'none' }}>❯</span>
             <Field autoComplete={'off'} className={styles.formInput} tag='input' placeholder={'What needs to be done?'} component={Input} name={'TaskText'} />
         </form>

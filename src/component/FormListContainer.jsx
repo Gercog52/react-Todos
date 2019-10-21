@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, {Component} from 'react'
+=======
+import React from 'react'
+>>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
 import {compose} from "redux";
 import {connect} from "react-redux";
 import FormList from "./FormList";
@@ -10,6 +14,7 @@ import {
     completedTask,
     deactTask,
     delDeactTask, delTask,
+<<<<<<< HEAD
     fullTask, newTimersThink
 } from "../redux/problem-reducer";
 import {taskSel} from "../helpers/selectors";
@@ -42,13 +47,40 @@ class FormListContainer extends Component {
 export default compose(
     connect((state)=> {
             console.log(state,'я тут');
+=======
+    fullTask
+} from "../redux/problem-reducer";
+import {taskSel} from "../helpers/selectors";
+
+const FormListContainer = (props) => {
+
+    let tasks = (props.isData === "Full") ? props.data.full : (props.isData === 'Act') ?
+        props.data.act : props.data.notAct;
+    return (
+        <div>
+            <FormList addTaskThink={props.addTaskThink} addTask={props.addTask} tasks={tasks}
+                      fullTask={props.fullTask} activeTask={props.activeTask} completedTask={props.completedTask}
+                      actTask={props.actTask} deactTask={props.deactTask} items={props.itemsAct}
+                      delDeactTask={props.delDeactTask} isData={props.isData}
+                      fullCarrentItems={props.fullCarrentItems} delTask={props.delTask}
+            />
+        </div>
+    )
+};
+
+export default compose(
+    connect((state)=> {
+>>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
         return {
             data:taskSel(state).data,
             isData:taskSel(state).isData,
             itemsAct:taskSel(state).itemsAct,
             fullCarrentItems: taskSel(state).fullCarrentItems,
+<<<<<<< HEAD
             state: state,
             timers:taskSel(state).timers,
+=======
+>>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
         }
     }, {
             addTask,
@@ -60,7 +92,10 @@ export default compose(
             deactTask,
             delDeactTask,
             delTask,
+<<<<<<< HEAD
             newTimersThink,
+=======
+>>>>>>> ed549858d8ec364d0cc6f1060390c94a28005041
     }
         )
 )(FormListContainer);
