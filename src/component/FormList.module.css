@@ -1,0 +1,434 @@
+@media all and (max-width: 466px) {
+    body {
+        padding: 5px;
+    }
+    .formInput {
+        font-size: 20px !important;
+    }
+    .item {
+        font-size: 20px !important;
+    }
+    .btns {
+        padding: 0 5px !important;
+    }
+    .btns button {
+        padding: 4px 4px !important;
+    }
+    .info {
+        text-align: center;
+        font-size: 10px;
+        width: 45px;
+    }
+}
+
+.form {
+    max-width: 550px;
+    margin: 0 auto;
+    background: white;
+    -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.24);
+    margin-bottom: 150px;
+}
+.str {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    -webkit-transform:rotate(90deg) translateY(-50%) translateX(-119%);
+    -ms-transform:rotate(90deg) translateY(-50%) translateX(-119%);
+    transform:rotate(90deg) translateY(-50%) translateX(-119%);
+    color: #e7e7e7;
+    font-size: 30px;
+}
+.fomsR {
+    position: relative;
+}
+.formInput {
+    max-width: 550px;
+    width: 100%;
+    height: 65px;
+    padding: 16px 16px 16px 60px;
+    margin: 0 auto;
+    font-size: 24px;
+    border: none;
+    outline: none;
+    -webkit-box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+    box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+}
+.formInput::-webkit-input-placeholder {color:#cbcbcb;font-style: italic}
+.formInput::-moz-placeholder          {color:#cbcbcb;font-style: italic}
+.formInput:-moz-placeholder           {color:#cbcbcb;font-style: italic}
+.formInput:-ms-input-placeholder      {color:#cbcbcb;font-style: italic}
+.item + .item {
+    border-top: none;
+}
+.btns {
+    padding: 0 18px;
+    width: 100%;
+    height: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #dadada;
+}
+.btns button {
+    background: transparent;
+    outline: none;
+    border: 1px solid transparent;
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+.btns button:hover {
+    cursor: pointer;
+    border: 1px solid rgba(240, 150, 90, 0.8);
+}
+.delTaskBtn span:after {
+    color: rgba(255, 69, 0, 0.54);
+    content: '×';
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.delTaskBtn:hover span:after {
+    cursor: pointer;
+    color: orangered;
+}
+.delTaskBtn {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: none;
+}
+.delTaskBtn span {
+    font-size: 30px;
+    font-weight: 600;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    vertical-align: middle;
+    padding-bottom: 5px;
+}
+.item:hover .delTaskBtn{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.BottomTimer {
+    width: 23px;
+    height: 23px;
+    background: orangered;
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+}
+.BottomTimer:hover {
+    cursor: pointer;
+}
+.BottomTimer img {
+    width: 23px;
+    height: 23px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.bresh {
+     position: absolute;
+     display: block;
+     border-right: 1px solid white;
+     border-radius: 50px;
+     width: 8px !important;
+     height: 9px !important;
+     background: transparent !important;
+ }
+.bresh2 {
+    position: absolute;
+    display: block;
+    border-right: 1px solid white;
+    border-radius: 50px;
+    width: 15px !important;
+    height: 16px !important;
+    background: transparent !important;
+}
+.payse {
+    width: 23px;
+    height: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: orangered;
+    margin-left: 5px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.payse:hover {
+    cursor: pointer;
+}
+.payse span {
+    height: 10px;
+    width: 4px;
+    background: white;
+
+}
+.payse span:first-child {
+}
+.payse span+span {
+    margin-left: 3px;
+}
+.hov:hover {
+    cursor: pointer;
+}
+.item {
+    border-top: 1px solid #dadada;
+    border-bottom: 1px solid #cbcbcb;
+    max-width: 550px;
+    width: 100%;
+    height: 65px;
+    padding: 16px 16px 16px 60px;
+    margin: 0 auto;
+    font-size: 24px;
+    line-height: 27px;
+    position: relative;
+}
+.timerForm {
+    display: flex;
+    align-items: center;
+}
+.timerForm input {
+    width: 30px;
+    text-align: center
+}
+
+.act {
+    border: 1px solid #ff5c00 !important;
+}
+
+.taskBtn {
+    outline: none;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #dadada;
+    background: transparent;
+    left: 8px;
+    border-radius: 50px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+}
+.btns:after {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    content: '';
+    width: 95%;
+    height: 6px;
+    bottom: -8px;
+    background: white;
+    border-bottom: 1px solid #dadada;
+}
+.btns:before {
+    position: absolute;
+    content: '';
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 90%;
+    height: 6px;
+    bottom: -14px;
+    background: white;
+    border-bottom: 1px solid #dadada;
+}
+.item:hover .svg {
+}
+.songV {
+    width: 23px;
+    height: 23px;
+    overflow: hidden;
+}
+.song {
+}
+.song:hover:before {
+    transform:rotate(45deg) translateX(0%);
+    visibility: visible;
+}
+.song:hover:after {
+    transform:rotate(-45deg) translateX(0%);
+    visibility: visible;
+}
+.song:before {
+    visibility: hidden;
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: 126%;
+    background: white;
+    transform: rotate(45deg) translateY(100%);
+    overflow: hidden;
+    transition: 0.2s;
+}
+.song:after {
+    visibility: hidden;
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: 126%;
+    background: white;
+    transform: rotate(-45deg) translateY(-100%);
+    overflow: hidden;
+    transition: 0.2s;
+}
+.lepTop,.lepRight {
+    top: 0;
+    position: absolute;
+    height: 0;
+    width: 2px;
+    background: orangered;
+    transform: rotate(90deg);
+    animation: LepT  1s infinite ease-in-out;}
+.lepRight {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg) !important;
+    animation: LepR  1s infinite ease-in-out;
+}
+.lepBottom {
+    bottom: 4px;
+    position: absolute;
+    height: 0;
+    width: 2px;
+    background: orangered;
+    transform: rotate(90deg);
+    animation: LepB  1s infinite ease-in-out;
+}
+@keyframes LepT {
+    from {}
+    to {
+        top: -30px;
+        height: 23px;
+        opacity: 0;}
+}
+@keyframes LepR {
+    from {}
+    to {
+        top: 0;
+        transform: translateY(0%);
+        right: -15px;
+        height: 23px;
+        opacity: 0;}
+}
+@keyframes LepB {
+    from {}
+    to {
+        bottom: -22px;
+        height: 23px;
+        opacity: 0;}
+}
+
+.svg {
+    left: 50%;
+    bottom: -16px;
+    font-size: 16px;
+    transform: translateY(-50%) translateX(-50%);
+    z-index: 20;
+    position: absolute;
+    display: block;
+}
+.svg img {
+    width: 16px;
+    height: 16px;
+}
+.taskBtn span {
+    position: relative;
+    -webkit-transform: rotate(5deg);
+    -ms-transform: rotate(5deg);
+    transform: rotate(5deg);
+}
+.taskBtn span:after {
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateX(155%) translateY(-57%) rotate(38deg);
+    -ms-transform: translateX(155%) translateY(-57%) rotate(38deg);
+    transform: translateX(155%) translateY(-57%) rotate(38deg);
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 2px;
+    background: #00ff95;
+}
+.taskBtn span:before {
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateX(-99%) translateY(150%) rotate(38deg);
+    -ms-transform: translateX(-99%) translateY(150%) rotate(38deg);
+    transform: translateX(-99%) translateY(150%) rotate(38deg);
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 2px;
+    background: #00ff95;
+}
+.taskTextAct span {
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+    position: relative;
+    height: 31px !important;
+}
+.taskTextDezebl span {
+    color: #dadada;
+    position: relative;
+    display: inline-block;
+    height: 31px !important;
+}
+.taskTextDezebl span:after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 100%;
+    left: 0;
+    height: 3px;
+    background: #dadada;
+}
+
+.taskBtn:hover {
+    cursor: pointer;
+}
