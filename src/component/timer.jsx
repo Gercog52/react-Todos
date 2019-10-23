@@ -7,15 +7,14 @@ import Audio from "../music/audio";
 
 function Timer(props) {
     const [inpState, setInp] = useState(false);
-    const [isOnTimer, setIsOnTimer] = useState(true);
-    const [play, setPlay] = useState(true);
+    const [isOnTimer, setIsOnTimer] = useState(!props.timer.pause);/////////////
+    const [play, setPlay] = useState(false);
     const [playBtn, setPlayBtn] = useState(false);
 
     let hourst = 0;
     let menut = 0;
     let sec = 0;
     if (props.timer.status) {
-        console.log(props.timer.fullTime);
         if(!playBtn) {
             if (!play) {
                 setPlay(true);
@@ -66,7 +65,9 @@ function Timer(props) {
                                 (isOnTimer) ? (
                                     <div onClick={() => {
                                         props.timer.delFunc();
+                                        props.pauseTimer(props.id);
                                         setIsOnTimer(false);
+                                        setPlay(false);
                                     }} className={styles.payse}>
                                         <span></span>
                                         <span></span>
@@ -84,7 +85,6 @@ function Timer(props) {
                                         {   (play) ?
 
                                                 <div onClick={()=> {
-                                                    console.log('++');
                                                     setPlay(false);
                                                     setPlayBtn(true);
                                                 }
@@ -110,7 +110,6 @@ function Timer(props) {
                 );
                 }
                 const ReduxForm = (props) => {
-                console.log(props, '----------------------------------------где мои пропсы оло');
                 return (
                 <form className={props.className} onSubmit={props.handleSubmit}>
                 <Field autoComplete={'off'} tag='input' component={Input} name={'hor'} />:

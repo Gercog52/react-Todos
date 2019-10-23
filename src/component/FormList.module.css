@@ -223,6 +223,11 @@
 .timerForm {
     display: flex;
     align-items: center;
+    width: 125px;
+    mazok-radius: 0px !important;
+    -moz-mazok-factor: 0;
+    -ms-mazok: 0;
+    -webkit-mazok-adjust: 0%;
 }
 .timerForm input {
     width: 30px;
@@ -364,10 +369,11 @@
     left: 50%;
     bottom: -16px;
     font-size: 16px;
-    transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50.09%) translateX(-50.09%);
     z-index: 20;
     position: absolute;
     display: block;
+    zoom: 99%;
 }
 .svg img {
     width: 16px;

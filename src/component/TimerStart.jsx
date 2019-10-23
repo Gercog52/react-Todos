@@ -5,9 +5,8 @@ import styles from "./FormList.module.css";
 function TimerStart(props) {
     const [inp, setInp] = useState(true);
     const sub = (data) => {
-        console.log(data);
         let sec = data.hor*60*60+data.min*60+(+data.sec);
-        props.newTimersThink(sec,props.id);
+        props.newTimersThink(sec,props.id,new Date());
         setInp((r=>!r));
     };
     return (

@@ -10,7 +10,7 @@ import {
     completedTask,
     deactTask,
     delDeactTask, delTask,
-    fullTask, newTimersThink
+    fullTask, initizlisThink, newTimersThink, pauseTimer
 } from "../redux/problem-reducer";
 import {taskSel} from "../helpers/selectors";
 
@@ -18,12 +18,17 @@ class FormListContainer extends Component {
     componentDidMount() {
         window.onbeforeunload = (() => {
             localStorage.setItem('state', JSON.stringify(this.props.state.task));
-        })
+        });
+        if (!this.props.init) {
+            this.props.initizlisThink();
+        }
     }
     render() {
-        console.log(this.props,'gfd');
         let tasks = (this.props.isData === "Full") ? this.props.data.full : (this.props.isData === 'Act') ?
             this.props.data.act : this.props.data.notAct;
+        if (!this.props.init) {
+            return <div>*</div>
+        }
         return (
             <div>
                 <FormList addTaskThink={this.props.addTaskThink} addTask={this.props.addTask} tasks={tasks}
@@ -33,6 +38,7 @@ class FormListContainer extends Component {
                           delDeactTask={this.props.delDeactTask} isData={this.props.isData}
                           fullCarrentItems={this.props.fullCarrentItems} delTask={this.props.delTask}
                           timers={this.props.timers} newTimersThink={this.props.newTimersThink}
+                          pauseTimer={this.props.pauseTimer}
                 />
             </div>
         )
@@ -41,7 +47,7 @@ class FormListContainer extends Component {
 
 export default compose(
     connect((state)=> {
-            console.log(state,'я тут');
+
         return {
             data:taskSel(state).data,
             isData:taskSel(state).isData,
@@ -49,6 +55,7 @@ export default compose(
             fullCarrentItems: taskSel(state).fullCarrentItems,
             state: state,
             timers:taskSel(state).timers,
+            init:taskSel(state).initizlis,
         }
     }, {
             addTask,
@@ -61,6 +68,8 @@ export default compose(
             delDeactTask,
             delTask,
             newTimersThink,
+            initizlisThink,
+            pauseTimer,
     }
         )
 )(FormListContainer);

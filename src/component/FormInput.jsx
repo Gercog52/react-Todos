@@ -12,9 +12,8 @@ const FormInput = (props) => {
         props.addTaskThink(data.TaskText,'inputTask')
     };
 
-    return ( <div>
+    return (
             <Form items={props.items} initialValues={{TaskText:''}} onSubmit={submit}/>
-        </div>
     )
 };
 

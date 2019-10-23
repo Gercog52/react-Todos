@@ -15,7 +15,7 @@ const Task = (props) => {
             </div>
             {(typeof (props.timer)==="object") ?
                 <div className={styles.svg} style={{display:'block'}}>
-                    <Timer id={props.task.id} newTimersThink={props.newTimersThink} timer={props.timer}/>
+                    <Timer pauseTimer={props.pauseTimer} id={props.task.id} newTimersThink={props.newTimersThink} timer={props.timer}/>
                 </div>
                 :
                 <div className={styles.svg}>

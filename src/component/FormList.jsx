@@ -15,6 +15,7 @@ const FormList = (props) => {
           task={item} key={item.id} delTask={props.delTask}
           timer={props.timers.find(itemTam => itemTam.id===item.id) || true}
           newTimersThink={props.newTimersThink}
+          pauseTimer={props.pauseTimer}
     /> );
     return (
         <div className={styles.form}>

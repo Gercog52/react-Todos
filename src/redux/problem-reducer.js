@@ -7,11 +7,29 @@ const DEACT_TASK = 'DEACT_TASK';
 const DEL_DEACT_TASK = 'DEL_DEACT_TASK';
 const DELL_TASK = 'DELL_TASK';
 const ADD_TIMER = 'ADD_TIMER';
-const STOP_TIMER = 'STOP_TIMER';
 const END_TIMER = 'END_TIMER';
+const INIT = 'INIT';
+const PAUTSE_TIMER = 'PAUTSE_TIMER';
+const DEL_TIMER = 'DEL_TIMER';
 
+export const delTimer = (id) => {
+  return {
+      type:DEL_TIMER,
+      id,
+  }
+};
+export const pauseTimer = (id) => {
+  return {
+      type:PAUTSE_TIMER,
+      id,
+  }
+};
+export const initizlis = () => {
+    return {
+        type:INIT
+    }
+};
 // dELL NOTACT TIMERS IS DELL_DEACT_TASK
-
 export const  delDeactTask = () => {
     return {
         type: DEL_DEACT_TASK,
@@ -67,7 +85,7 @@ export const addTask = (text) => {
         }
     }
 };
-export const addTimer = (time,delFunc,status,id,isFullTime) => {
+export const addTimer = (time,delFunc,status,id,isFullTime,data) => {
     return isFullTime ?
         {
             type: ADD_TIMER,
@@ -75,7 +93,9 @@ export const addTimer = (time,delFunc,status,id,isFullTime) => {
             delFunc,
             status,
             id,
-            fullTime:time
+            fullTime:time,
+            pause: false,
+            data: data || 'none',
     } :
      {
         type: ADD_TIMER,
@@ -83,12 +103,28 @@ export const addTimer = (time,delFunc,status,id,isFullTime) => {
         delFunc,
         status,
         id,
+        pause: false
     }
 };
 export const endTimer = (id) => {
     return {
         type: END_TIMER,
         id,
+    }
+};
+export const initizlisThink = () => {
+    return (dispach,state) => {
+        state().task.timers.map(item => {
+            if (item.time!==0) {
+                if (!item.pause) {
+                    dispach(newTimersThink(item.time,item.id,item.data));
+                }
+            } else {
+                dispach(delTimer(item.id))
+            }
+            return true
+        });
+        dispach(initizlis());
     }
 };
 // add task + reset forms
@@ -112,8 +148,8 @@ export const stopTimerThink = (id) => {
         task.delFunc();
     }
 };
-export const newTimersThink = (time,id) => {
-    return (dispach) => {
+export const newTimersThink = (time,id,data) => {
+    return (dispach,state) => {
         let newTime = time;
         let tim = setInterval(()=>{
             --newTime;
@@ -125,12 +161,16 @@ export const newTimersThink = (time,id) => {
             }
         },1000);
         const delTimer = () => {clearInterval(tim)};
-        dispach(addTimer(time,delTimer,false,id,true))
+        ///let newTim = new Date()
+        //let date = state().task.timers.find(item => item.id===id).data;
+        //let shift = (new Date()) - date;
+        //let newTime2 = time - shift;
+        dispach(addTimer(time,delTimer,false,id,true,data))
     }
 };
 
-console.log(JSON.parse(localStorage.getItem('state')));
-const startStore = /*JSON.parse(localStorage.getItem('state')) ||*/ {
+let state = JSON.parse(localStorage.getItem('state'));
+const startStore = (state) ? {...state,initizlis: false} : {
     data: {
         act: [],
         notAct: [],
@@ -139,12 +179,31 @@ const startStore = /*JSON.parse(localStorage.getItem('state')) ||*/ {
     isData: 'Full',
     itemsAct: 0,
     fullItems: 0,// id
-    fullCarrentItems:0,
+    fullCarrentItems: 0,
     timers: [],
+    initizlis: false,
 };
 
 const problem_reducer = (state = startStore, actions) => {
     switch (actions.type) {
+        case DEL_TIMER: {
+            return {
+                ...state,
+                timers: state.timers.filter(item => item.id!==actions.id)
+            }
+        }
+        case PAUTSE_TIMER: {
+            return {
+                ...state,
+                timers: state.timers.map(item => (item.id!==actions.id) ? item : {...item,pause:true})
+            }
+        }
+        case INIT: {
+            return {
+                ...state,
+                initizlis: true
+            }
+        }
         /*case STOP_TIMER: {
             return {
                 ...state,
@@ -183,14 +242,23 @@ const problem_reducer = (state = startStore, actions) => {
                     return item
                 } else {
                     stat = true;
-                    return {time:actions.time,delFunc:actions.delFunc,
-                        status:actions.status,id:actions.id,fullTime:(actions.fullTime&&item.fullTime!==actions.fullTime) ? actions.fullTime : item.fullTime }
+                    return {
+                        time:actions.time,delFunc:actions.delFunc,
+                        status:actions.status,id:actions.id,
+                        pause:actions.pause,
+                        fullTime:(actions.fullTime&&item.fullTime!==actions.fullTime) ?
+                            actions.fullTime : item.fullTime,
+                        data: (actions.data) ? (actions.data !== 'none' && actions.data!==item.data) ?
+                            actions.data : item.data : item.data,
+                    }
                 }
             })];
             // eslint-disable-next-line no-unused-expressions
             if (!stat) {
                 timers.push({time:actions.time,delFunc:actions.delFunc,
-                    status:actions.status,id:actions.id,fullTime:actions.fullTime});
+                    status:actions.status,id:actions.id,fullTime:actions.fullTime,
+                    data:actions.data,
+                });
             }
             return {
                 ...state,
@@ -232,6 +300,13 @@ const problem_reducer = (state = startStore, actions) => {
                 },
                 fullCarrentItems: state.fullCarrentItems - 1,
                 itemsAct: (typeTask) ? state.itemsAct - 1 : state.itemsAct,
+                timers: state.timers.filter(item => {
+                    if (item.id===actions.id) {
+                        item.delFunc();
+                        return false;
+                    }
+                    return true
+                })
             }
 
         }
@@ -275,6 +350,7 @@ const problem_reducer = (state = startStore, actions) => {
             };
         case DEL_DEACT_TASK:
             let current = state.fullCarrentItems;
+            let newDelTimers = [];
             return {
                 ...state,
                 data: {
@@ -285,12 +361,28 @@ const problem_reducer = (state = startStore, actions) => {
                             return true
                         } else {
                             --current;
-                            // удалить таймера
+                            for (let t = 0; t<state.timers.length; t++) {
+                                if (state.timers[t].id === item.id) {
+                                    newDelTimers.push(state.timers[t]);
+                                    return false
+                                }
+                            }
                             return false
                         }
                     }),
                 },
                 fullCarrentItems: current,
+                timers: state.timers.filter(item => {
+                    console.log(newDelTimers,'t');
+                    for (let t=0; t<newDelTimers.length; t++) {
+                        if (newDelTimers[t].id === item.id) {
+                            debugger
+                            newDelTimers[t].delFunc();
+                            return false
+                        }
+                    }
+                    return true
+                })
             };
         default: {
             return state
