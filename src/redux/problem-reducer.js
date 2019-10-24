@@ -11,6 +11,14 @@ const END_TIMER = 'END_TIMER';
 const INIT = 'INIT';
 const PAUTSE_TIMER = 'PAUTSE_TIMER';
 const DEL_TIMER = 'DEL_TIMER';
+const SET_FORM = 'SET_FORM';
+
+export const setForm = (state) => {
+    return {
+        type:SET_FORM,
+        stateForm:state,
+    }
+};
 
 export const delTimer = (id) => {
   return {
@@ -85,7 +93,7 @@ export const addTask = (text) => {
         }
     }
 };
-export const addTimer = (time,delFunc,status,id,isFullTime,data) => {
+export const addTimer = (time,delFunc,status,id,isFullTime,date) => {
     return isFullTime ?
         {
             type: ADD_TIMER,
@@ -95,7 +103,7 @@ export const addTimer = (time,delFunc,status,id,isFullTime,data) => {
             id,
             fullTime:time,
             pause: false,
-            data: data || 'none',
+            date: date || 'none',
     } :
      {
         type: ADD_TIMER,
@@ -182,10 +190,17 @@ const startStore = (state) ? {...state,initizlis: false} : {
     fullCarrentItems: 0,
     timers: [],
     initizlis: false,
+    formOn: false,
 };
 
 const problem_reducer = (state = startStore, actions) => {
     switch (actions.type) {
+        case SET_FORM: {
+            return {
+                ...state,
+                formOn: actions.stateForm,
+            }
+        }
         case DEL_TIMER: {
             return {
                 ...state,
@@ -248,8 +263,8 @@ const problem_reducer = (state = startStore, actions) => {
                         pause:actions.pause,
                         fullTime:(actions.fullTime&&item.fullTime!==actions.fullTime) ?
                             actions.fullTime : item.fullTime,
-                        data: (actions.data) ? (actions.data !== 'none' && actions.data!==item.data) ?
-                            actions.data : item.data : item.data,
+                        date: (actions.date) ? (actions.date !== 'none' && actions.date!==item.date) ?
+                            actions.date : item.date : item.date,
                     }
                 }
             })];
@@ -257,7 +272,7 @@ const problem_reducer = (state = startStore, actions) => {
             if (!stat) {
                 timers.push({time:actions.time,delFunc:actions.delFunc,
                     status:actions.status,id:actions.id,fullTime:actions.fullTime,
-                    data:actions.data,
+                    date:actions.date,
                 });
             }
             return {

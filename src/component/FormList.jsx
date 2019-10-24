@@ -2,6 +2,7 @@ import React from 'react'
 import FormInput from "./FormInput";
 import styles from './FormList.module.css'
 import Task from "./Task";
+import {setForm} from "../redux/problem-reducer";
 
 
 const FormList = (props) => {
@@ -15,7 +16,7 @@ const FormList = (props) => {
           task={item} key={item.id} delTask={props.delTask}
           timer={props.timers.find(itemTam => itemTam.id===item.id) || true}
           newTimersThink={props.newTimersThink}
-          pauseTimer={props.pauseTimer}
+          pauseTimer={props.pauseTimer} formOn={props.formOn} setForm={props.setForm}
     /> );
     return (
         <div className={styles.form}>

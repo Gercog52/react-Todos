@@ -36,9 +36,16 @@ function Timer(props) {
     menut = ((menut + '').length === 1) ? '0' + menut : menut;
     hourst = ((hourst + '').length === 1) ? '0' + hourst : hourst;
     const sub = (data) => {
-        props.newTimersThink(+data.hor * 60 * 60 + (+data.min) * 60 + (+data.sec), props.id);
-        setInp((r) => !r);
+        /*
+                    * [`hor${props.id}`]
+            [`min${props.id}`]
+            [`sec${props.id}`]
+        * */
+        console.log(data);
+        props.newTimersThink(+data[`hor`] * 60 * 60 + (+data[`min`]) * 60 + (+data[`sec`]), props.id);
+        setInp(false);
         setIsOnTimer(true);
+        props.setForm(false);
     };
     //(props.timer.) <MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" instruments={[]} drums={[]} />
     return (
@@ -47,7 +54,7 @@ function Timer(props) {
                 (inpState) ?
                     (
                         <div>
-                            <Form onSubmit={sub} initialValues={{hor: hourst, min: menut, sec: sec}}
+                            <Form id={props.id} onSubmit={sub} initialValues={{[`hor`]: hourst, [`min`]: menut, [`sec`]: sec}}
                                   className={styles.timerForm}/>
                         </div>
                     )
@@ -56,8 +63,12 @@ function Timer(props) {
                         <div style={{display: 'flex', 'alignitems': 'center',}}>
                             <Audio play={play} autoPlay={props.timer.status}/>
                             <span onClick={() => {
+                                if (props.formOn) {
+                                    return
+                                }
+                                props.setForm(true);
                                 props.timer.delFunc();
-                                setInp(r => !r);
+                                setInp(true);
                             }}>
                                 {hourst}:{menut}:{sec}
                             </span>
@@ -110,14 +121,24 @@ function Timer(props) {
                 );
                 }
                 const ReduxForm = (props) => {
+    /*
+    * ${props.id}
+${props.id}
+${props.id}
+*   ${props.id}
+    ${props.id}
+    ${props.id}
+    * */      /*      props.initialValues[`hor${props.id}`]='00';
+                    props.initialValues[`min${props.id}`]='00';
+                    props.initialValues[`sec${props.id}`]='00';*/
                 return (
                 <form className={props.className} onSubmit={props.handleSubmit}>
-                <Field autoComplete={'off'} tag='input' component={Input} name={'hor'} />:
-                <Field autoComplete={'off'} tag='input' component={Input} name={'min'} />:
-                <Field autoComplete={'off'} tag='input' component={Input} name={'sec'} />
-                <button className={styles.BottomTimer}>
-                <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgMTI0LjUxMiAxMjQuNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxMjQuNTEyIDEyNC41MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8cGF0aCBkPSJNMTEzLjk1Niw1Ny4wMDZsLTk3LjQtNTYuMmMtNC0yLjMtOSwwLjYtOSw1LjJ2MTEyLjVjMCw0LjYsNSw3LjUsOSw1LjJsOTcuNC01Ni4yICAgQzExNy45NTYsNjUuMTA1LDExNy45NTYsNTkuMzA2LDExMy45NTYsNTcuMDA2eiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" alt=''/>
-                </button>
+                    <Field autoComplete={'off'} tag='input' component={Input} name={`hor`} />:
+                    <Field autoComplete={'off'} tag='input' component={Input} name={`min`} />:
+                    <Field autoComplete={'off'} tag='input' component={Input} name={`sec`} />
+                    <button className={styles.BottomTimer}>
+                    <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgMTI0LjUxMiAxMjQuNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxMjQuNTEyIDEyNC41MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8cGF0aCBkPSJNMTEzLjk1Niw1Ny4wMDZsLTk3LjQtNTYuMmMtNC0yLjMtOSwwLjYtOSw1LjJ2MTEyLjVjMCw0LjYsNSw3LjUsOSw1LjJsOTcuNC01Ni4yICAgQzExNy45NTYsNjUuMTA1LDExNy45NTYsNTkuMzA2LDExMy45NTYsNTcuMDA2eiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" alt=''/>
+                    </button>
                 </form>
                 )
             };

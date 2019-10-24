@@ -10,7 +10,7 @@ import {
     completedTask,
     deactTask,
     delDeactTask, delTask,
-    fullTask, initizlisThink, newTimersThink, pauseTimer
+    fullTask, initizlisThink, newTimersThink, pauseTimer, setForm
 } from "../redux/problem-reducer";
 import {taskSel} from "../helpers/selectors";
 
@@ -39,6 +39,7 @@ class FormListContainer extends Component {
                           fullCarrentItems={this.props.fullCarrentItems} delTask={this.props.delTask}
                           timers={this.props.timers} newTimersThink={this.props.newTimersThink}
                           pauseTimer={this.props.pauseTimer}
+                          setForm={this.props.setForm} formOn={this.props.formOn}
                 />
             </div>
         )
@@ -56,8 +57,10 @@ export default compose(
             state: state,
             timers:taskSel(state).timers,
             init:taskSel(state).initizlis,
+            formOn: taskSel(state).formOn,
         }
     }, {
+            setForm,
             addTask,
             addTaskThink,
             fullTask,
