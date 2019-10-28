@@ -208,6 +208,68 @@
 .hov:hover {
     cursor: pointer;
 }
+.hov {
+    z-index: 10;
+}
+.hovAct {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-9px);
+}
+.hovAct:hover {
+    cursor: pointer;
+}
+.hovAct .circle {
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 50px;
+    border: 2px solid orangered;
+    animation: circle 2s infinite linear;
+    animation-delay: 1s;
+    opacity: 0.8;
+    z-index: 5;
+}
+.hovAct .circle2 {
+    z-index: 5;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 50px;
+    border: 2px solid orangered;
+    animation: circle2  2s infinite linear;
+    animation-delay: 0s;
+    opacity: 0.8;
+}
+@keyframes circle {
+    from {}
+    to {
+        width: 50px;
+        height: 50px;
+        border: 10px solid red;
+        opacity: 0.1;
+    }
+}
+@keyframes circle2 {
+    from {}
+    to {
+        width: 50px;
+        height: 50px;
+        border: 10px solid red;
+        opacity: 0.1;
+    }
+}
+
+
+
 .item {
     border-top: 1px solid #dadada;
     border-bottom: 1px solid #cbcbcb;

@@ -10,5 +10,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="react-social" />
     <orderEntry type="module" module-name="10" />
+    <orderEntry type="module" module-name="node" />
   </component>
 </module>

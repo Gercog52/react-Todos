@@ -9,15 +9,18 @@ import {
     addTaskThink,
     completedTask,
     deactTask,
-    delDeactTask, delTask,
-    fullTask, initizlisThink, newTimersThink, pauseTimer, setForm
+    delDeactTask, delTask, delTimer,
+    fullTask, initizlisThink, newTimersThink, oflineTimerOff, oflineTimerOn, pauseTimer, setForm
 } from "../redux/problem-reducer";
 import {taskSel} from "../helpers/selectors";
 
 class FormListContainer extends Component {
     componentDidMount() {
         window.onbeforeunload = (() => {
-            localStorage.setItem('state', JSON.stringify(this.props.state.task));
+            localStorage.setItem('state', JSON.stringify({
+                ...this.props.state.task,
+                dateExit:(new Date()+'').match(/(\d\d):(\d\d):(\d\d)/)
+            }));
         });
         if (!this.props.init) {
             this.props.initizlisThink();
@@ -40,6 +43,8 @@ class FormListContainer extends Component {
                           timers={this.props.timers} newTimersThink={this.props.newTimersThink}
                           pauseTimer={this.props.pauseTimer}
                           setForm={this.props.setForm} formOn={this.props.formOn}
+                          oflineTimerOn={this.props.oflineTimerOn} oflineTimerOff={this.props.oflineTimerOff}
+                          delTimer={this.props.delTimer}
                 />
             </div>
         )
@@ -58,6 +63,7 @@ export default compose(
             timers:taskSel(state).timers,
             init:taskSel(state).initizlis,
             formOn: taskSel(state).formOn,
+
         }
     }, {
             setForm,
@@ -73,6 +79,9 @@ export default compose(
             newTimersThink,
             initizlisThink,
             pauseTimer,
+            oflineTimerOn,
+            oflineTimerOff,
+            delTimer,
     }
         )
 )(FormListContainer);

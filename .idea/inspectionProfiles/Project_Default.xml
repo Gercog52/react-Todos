@@ -6,11 +6,12 @@
       <option name="myIgnoreVendorSpecificProperties" value="false" />
       <option name="myCustomPropertiesList">
         <value>
-          <list size="4">
+          <list size="5">
             <item index="0" class="java.lang.String" itemvalue="mazok-factor" />
             <item index="1" class="java.lang.String" itemvalue="mazok" />
             <item index="2" class="java.lang.String" itemvalue="mazok-adjust" />
             <item index="3" class="java.lang.String" itemvalue="mazok-radius" />
+            <item index="4" class="java.lang.String" itemvalue="grid-gap-columns" />
           </list>
         </value>
       </option>

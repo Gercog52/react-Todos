@@ -12,6 +12,22 @@ const INIT = 'INIT';
 const PAUTSE_TIMER = 'PAUTSE_TIMER';
 const DEL_TIMER = 'DEL_TIMER';
 const SET_FORM = 'SET_FORM';
+const OFLAINE_TIMER_OFF = 'OFLAINE_TIMER_OFF';
+const OFLAINE_TIMER_ON = 'OFLAINE_TIMER_ON';
+
+export const oflineTimerOff = (id) => {
+    return {
+        type:OFLAINE_TIMER_OFF,
+        id,
+    }
+};
+export const oflineTimerOn = (id) => {
+    return {
+        type: OFLAINE_TIMER_ON,
+        id,
+    }
+}
+
 
 export const setForm = (state) => {
     return {
@@ -49,7 +65,7 @@ export const delTask = (id) => {
         type:DELL_TASK,
         id,
     }
-}
+};
 
 export const actTask = (id) => {
     return {
@@ -104,6 +120,7 @@ export const addTimer = (time,delFunc,status,id,isFullTime,date) => {
             fullTime:time,
             pause: false,
             date: date || 'none',
+            offlineIsOff: false,
     } :
      {
         type: ADD_TIMER,
@@ -111,7 +128,8 @@ export const addTimer = (time,delFunc,status,id,isFullTime,date) => {
         delFunc,
         status,
         id,
-        pause: false
+        pause: false,
+        offlineIsOff: false
     }
 };
 export const endTimer = (id) => {
@@ -121,10 +139,31 @@ export const endTimer = (id) => {
     }
 };
 export const initizlisThink = () => {
-    return (dispach,state) => {
+    return async (dispach,state) => {
+        let dateExit = state().task.dateExit;
+        let promise = fetch('http://localhost:2500/');
+        promise.then(res=>res.text()).then(res => console.log(res));
+        console.log('1');
         state().task.timers.map(item => {
             if (item.time!==0) {
+                console.log('ну шо бля');
                 if (!item.pause) {
+                    if(item.date) {
+                        let date = (new Date()+'').match(/(\d\d):(\d\d):(\d\d)/);
+                        let data1 = +date[1]*60*60+(+date[2]*60)+(+date[3]);
+                        let data2 = +dateExit[1]*60*60+(+dateExit[2]*60)+(+dateExit[3]);
+                        let erorTime = data1-data2;
+                        let time = item.time - erorTime;
+                        console.log(time,date,dateExit);
+                        console.log(data1,data2,erorTime);
+                        if (time<=0) {
+                            dispach(oflineTimerOff(item.id));
+                        } else {
+                            console.log('я запускаю наъуй');
+                            dispach(newTimersThink(time,item.id,item.data));
+                        }
+                        return true
+                    }
                     dispach(newTimersThink(item.time,item.id,item.data));
                 }
             } else {
@@ -178,7 +217,7 @@ export const newTimersThink = (time,id,data) => {
 };
 
 let state = JSON.parse(localStorage.getItem('state'));
-const startStore = (state) ? {...state,initizlis: false} : {
+const startStore = (state) ? {...state,initizlis: false,formOn: false,} : {
     data: {
         act: [],
         notAct: [],
@@ -191,10 +230,27 @@ const startStore = (state) ? {...state,initizlis: false} : {
     timers: [],
     initizlis: false,
     formOn: false,
+    dateExit: null,
 };
 
 const problem_reducer = (state = startStore, actions) => {
     switch (actions.type) {
+        case OFLAINE_TIMER_OFF: {
+            return {
+                ...state,
+                timers: state.timers.map(item => {
+                    return (item.id === actions.id) ? {...item,offlineIsOff:true} : item
+                })
+            };
+        }
+        case OFLAINE_TIMER_ON: {
+            return {
+                ...state,
+                timers: state.timers.map(item => {
+                    return (item.id === actions.id) ? {...item,offlineIsOff:false} : item
+                })
+            };
+        }
         case SET_FORM: {
             return {
                 ...state,
@@ -265,6 +321,7 @@ const problem_reducer = (state = startStore, actions) => {
                             actions.fullTime : item.fullTime,
                         date: (actions.date) ? (actions.date !== 'none' && actions.date!==item.date) ?
                             actions.date : item.date : item.date,
+                        offlineIsOff: actions.offlineIsOff,
                     }
                 }
             })];
@@ -272,7 +329,7 @@ const problem_reducer = (state = startStore, actions) => {
             if (!stat) {
                 timers.push({time:actions.time,delFunc:actions.delFunc,
                     status:actions.status,id:actions.id,fullTime:actions.fullTime,
-                    date:actions.date,
+                    date:actions.date,oflineTimerOff:actions.offlineIsOff
                 });
             }
             return {

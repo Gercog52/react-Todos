@@ -17,6 +17,11 @@ const FormList = (props) => {
           timer={props.timers.find(itemTam => itemTam.id===item.id) || true}
           newTimersThink={props.newTimersThink}
           pauseTimer={props.pauseTimer} formOn={props.formOn} setForm={props.setForm}
+          oflineTimerOn={props.oflineTimerOn} oflineTimerOff={props.oflineTimerOff}
+          delTimer={props.delTimer}
+          offlineIsOff={(props.timers.find(itemTam => (itemTam.id===item.id))) ?
+              props.timers.find(itemTam => (itemTam.id===item.id)) : false
+          }
     /> );
     return (
         <div className={styles.form}>

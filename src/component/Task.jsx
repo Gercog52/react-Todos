@@ -15,13 +15,23 @@ const Task = (props) => {
                     {props.task.text}
                 </span>
             </div>
-            {(typeof (props.timer)==="object") ?
+            {(typeof (props.timer)==="object") ? /// сделать чтобы работало по другому
                 <div className={styles.svg} style={{display:'block'}}>
                     <Timer formOn={props.formOn} setForm={props.setForm} pauseTimer={props.pauseTimer} id={props.task.id} newTimersThink={props.newTimersThink} timer={props.timer}/>
                 </div>
                 :
                 <div className={styles.svg}>
-                    <TimerStart formOn={props.formOn} setForm={props.setForm} id={props.task.id} newTimersThink={props.newTimersThink}/>
+                    <TimerStart
+                        timer={props.timer}
+                        formOn={props.formOn}
+                        setForm={props.setForm}
+                        id={props.task.id}
+                        newTimersThink={props.newTimersThink}
+                        oflineTimerOn={props.oflineTimerOn}
+                        oflineTimerOff={props.oflineTimerOff}
+                        delTimer={props.delTimer}
+                        offlineIsOff={props.offlineIsOff}
+                    />
                 </div>}
             <div onClick={()=> {props.delTask(props.task.id)}} className={styles.delTaskBtn}>
                 <span>
