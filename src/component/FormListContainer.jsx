@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {compose} from "redux";
 import {connect} from "react-redux";
 import FormList from "./FormList";
+import {DragDropContext} from 'react-beautiful-dnd';
 import {
     activeTask,
     actTask,
@@ -26,6 +27,9 @@ class FormListContainer extends Component {
             this.props.initizlisThink();
         }
     }
+    dragEnd(event) {
+        console.log(event);
+    }
     render() {
         let tasks = (this.props.isData === "Full") ? this.props.data.full : (this.props.isData === 'Act') ?
             this.props.data.act : this.props.data.notAct;
@@ -33,27 +37,20 @@ class FormListContainer extends Component {
             return <div>*</div>
         }
         return (
-            <div>
-                <FormList addTaskThink={this.props.addTaskThink} addTask={this.props.addTask} tasks={tasks}
-                          fullTask={this.props.fullTask} activeTask={this.props.activeTask}
-                          completedTask={this.props.completedTask}
-                          actTask={this.props.actTask} deactTask={this.props.deactTask} items={this.props.itemsAct}
-                          delDeactTask={this.props.delDeactTask} isData={this.props.isData}
-                          fullCarrentItems={this.props.fullCarrentItems} delTask={this.props.delTask}
-                          timers={this.props.timers} newTimersThink={this.props.newTimersThink}
-                          pauseTimer={this.props.pauseTimer}
-                          setForm={this.props.setForm} formOn={this.props.formOn}
-                          oflineTimerOn={this.props.oflineTimerOn} oflineTimerOff={this.props.oflineTimerOff}
-                          delTimer={this.props.delTimer}
-                />
-            </div>
+            <DragDropContext onDragEnd={this.dragEnd.bind(this)}>
+                {
+                    <div>
+                        
+                        <FormList {...this.props} tasks={tasks}/>
+                    </div>   
+                }
+            </DragDropContext>
         )
     }
 }
 
 export default compose(
     connect((state)=> {
-
         return {
             data:taskSel(state).data,
             isData:taskSel(state).isData,
@@ -63,9 +60,8 @@ export default compose(
             timers:taskSel(state).timers,
             init:taskSel(state).initizlis,
             formOn: taskSel(state).formOn,
-
         }
-    }, {
+    },{
             setForm,
             addTask,
             addTaskThink,

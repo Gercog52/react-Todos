@@ -35,7 +35,7 @@
     left: 0;
     -webkit-transform:rotate(90deg) translateY(-50%) translateX(-119%);
     -ms-transform:rotate(90deg) translateY(-50%) translateX(-119%);
-    transform:rotate(90deg) translateY(-50%) translateX(-119%);
+    transform:rotate(90deg) translateY(-50%) translateX(-50%);
     color: #e7e7e7;
     font-size: 30px;
 }
@@ -200,8 +200,7 @@
     background: white;
 
 }
-.payse span:first-child {
-}
+
 .payse span+span {
     margin-left: 3px;
 }
@@ -286,7 +285,6 @@
     display: flex;
     align-items: center;
     width: 125px;
-    mazok-radius: 0px !important;
     -moz-mazok-factor: 0;
     -ms-mazok: 0;
     -webkit-mazok-adjust: 0%;
@@ -341,15 +339,13 @@
     background: white;
     border-bottom: 1px solid #dadada;
 }
-.item:hover .svg {
-}
+
 .songV {
     width: 23px;
     height: 23px;
     overflow: hidden;
 }
-.song {
-}
+
 .song:hover:before {
     transform:rotate(45deg) translateX(0%);
     visibility: visible;
