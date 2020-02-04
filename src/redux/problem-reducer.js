@@ -14,6 +14,16 @@ const DEL_TIMER = 'DEL_TIMER';
 const SET_FORM = 'SET_FORM';
 const OFLAINE_TIMER_OFF = 'OFLAINE_TIMER_OFF';
 const OFLAINE_TIMER_ON = 'OFLAINE_TIMER_ON';
+const MOVE_ITEM = 'MOVE_ITEM';
+
+export const moveItem = (idOne, idTwo) => {
+    return {
+        type: MOVE_ITEM,
+        idOne,
+        idTwo
+    }
+    
+}
 
 export const oflineTimerOff = (id) => {
     return {
@@ -27,7 +37,6 @@ export const oflineTimerOn = (id) => {
         id,
     }
 }
-
 
 export const setForm = (state) => {
     return {
@@ -141,9 +150,6 @@ export const endTimer = (id) => {
 export const initizlisThink = () => {
     return async (dispach,state) => {
         let dateExit = state().task.dateExit;
-        let promise = fetch('http://localhost:2500/');
-        promise.then(res=>res.text()).then(res => console.log(res));
-        console.log('1');
         state().task.timers.map(item => {
             if (item.time!==0) {
                 console.log('ну шо бля');
@@ -235,6 +241,37 @@ const startStore = (state) ? {...state,initizlis: false,formOn: false,} : {
 
 const problem_reducer = (state = startStore, actions) => {
     switch (actions.type) {
+        case MOVE_ITEM: {
+            let idOne = actions.idOne;
+            let idTwo = actions.adTwo;
+            let one;
+            let two;
+            let full = [...state.data.full];
+            full.reduce(item => {
+                if (item.id === idOne) {
+                    one = item;
+                }
+                if (item.id === idTwo) {
+                    two = item;
+                }
+            });
+            full.reduce(item => {
+                if (item.id === idOne) {
+                    item = two;
+                }
+                if (item.id === idTwo) {
+                    item = one;
+                }
+            })
+            return {
+                ...state,
+                date: {
+                    ...state.data,
+                    // do full, act and notAct
+                    full: full,
+                }
+            }
+        }
         case OFLAINE_TIMER_OFF: {
             return {
                 ...state,

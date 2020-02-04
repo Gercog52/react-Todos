@@ -28,7 +28,7 @@ class FormListContainer extends Component {
         }
     }
     dragEnd(event) {
-        console.log(event);
+        console.log(event,this.props.data,this.props.isData);
     }
     render() {
         let tasks = (this.props.isData === "Full") ? this.props.data.full : (this.props.isData === 'Act') ?

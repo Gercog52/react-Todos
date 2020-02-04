@@ -3,7 +3,6 @@ import FormInput from "./FormInput";
 import styles from './FormList.module.css'
 import Task from "./Task";
 import {Droppable} from 'react-beautiful-dnd';
-import {setForm} from "../redux/problem-reducer";
 
 
 const FormList = (props) => {
@@ -13,7 +12,7 @@ const FormList = (props) => {
      </div>
      * */
 
-    let task = props.tasks.map(item => <Task actTask={props.actTask} deactTask={props.deactTask}
+    let task = props.tasks.map((item,index) => <Task actTask={props.actTask} deactTask={props.deactTask}
           task={item} key={item.id} delTask={props.delTask}
           timer={props.timers.find(itemTam => itemTam.id===item.id) || true}
           newTimersThink={props.newTimersThink}
@@ -23,6 +22,7 @@ const FormList = (props) => {
           offlineIsOff={(props.timers.find(itemTam => (itemTam.id===item.id))) ?
               props.timers.find(itemTam => (itemTam.id===item.id)) : false
           }
+          index={index}
     />);
     return (
         <Droppable droppableId={'10'}>

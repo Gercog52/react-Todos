@@ -1,12 +1,9 @@
 import React, {useState} from 'react';
 import {Field, reduxForm} from "redux-form";
 import styles from "./FormList.module.css";
-import Input, {
-    Input2,
-    InputOnchangeNumber,
+import {
     InputOnchangeNumberHor,
     InputOnchangeNumberSecMin,
-    InputOnchangeNumberTime
 } from "../helpers/formHoc";
 import {fullSec} from "../helpers/HelpFuncJs";
 import Audio from "../music/audio";
