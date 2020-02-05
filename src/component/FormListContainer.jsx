@@ -11,7 +11,14 @@ import {
     completedTask,
     deactTask,
     delDeactTask, delTask, delTimer,
-    fullTask, initizlisThink, newTimersThink, oflineTimerOff, oflineTimerOn, pauseTimer, setForm
+    fullTask, 
+    initizlisThink, 
+    newTimersThink, 
+    oflineTimerOff, 
+    oflineTimerOn, 
+    pauseTimer, 
+    setForm,
+    moveItem,
 } from "../redux/problem-reducer";
 import {taskSel} from "../helpers/selectors";
 
@@ -28,11 +35,16 @@ class FormListContainer extends Component {
         }
     }
     dragEnd(event) {
-        console.log(event,this.props.data,this.props.isData);
+        debugger
+        let tasks = (this.props.isData === "Full") ? this.props.data.full : (this.props.isData === 'Act') ?
+        this.props.data.act : this.props.data.notAct;               
+        console.log(event,tasks, tasks[event.destination.index].id, tasks[event.source.index].id);
+        this.props.moveItem(tasks[event.destination.index].id,tasks[event.source.index].id);
     }
     render() {
         let tasks = (this.props.isData === "Full") ? this.props.data.full : (this.props.isData === 'Act') ?
             this.props.data.act : this.props.data.notAct;
+        console.log(tasks);
         if (!this.props.init) {
             return <div>*</div>
         }
@@ -40,7 +52,6 @@ class FormListContainer extends Component {
             <DragDropContext onDragEnd={this.dragEnd.bind(this)}>
                 {
                     <div>
-                        
                         <FormList {...this.props} tasks={tasks}/>
                     </div>   
                 }
@@ -78,6 +89,7 @@ export default compose(
             oflineTimerOn,
             oflineTimerOff,
             delTimer,
+            moveItem,
     }
         )
 )(FormListContainer);

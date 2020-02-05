@@ -242,12 +242,15 @@ const startStore = (state) ? {...state,initizlis: false,formOn: false,} : {
 const problem_reducer = (state = startStore, actions) => {
     switch (actions.type) {
         case MOVE_ITEM: {
+            debugger
             let idOne = actions.idOne;
-            let idTwo = actions.adTwo;
+            let idTwo = actions.idTwo;
             let one;
             let two;
             let full = [...state.data.full];
-            full.reduce(item => {
+            let notAct = [];
+            let act = [];
+            full.forEach(item => {
                 if (item.id === idOne) {
                     one = item;
                 }
@@ -255,20 +258,29 @@ const problem_reducer = (state = startStore, actions) => {
                     two = item;
                 }
             });
-            full.reduce(item => {
-                if (item.id === idOne) {
-                    item = two;
+            for (let t=0; t<full.length; t++) {
+                if (full[t].id === idOne) {
+                    full[t] = two;
+                } else if (full[t].id === idTwo) {
+                    full[t] = one;
                 }
-                if (item.id === idTwo) {
-                    item = one;
+            }
+            full.forEach(item => {
+                if (item.act === true) {
+                    act.push(item);
+                } else {
+                    notAct.push(item);
                 }
             })
+            console.log(full, '<-');
             return {
                 ...state,
-                date: {
+                data: {
                     ...state.data,
                     // do full, act and notAct
                     full: full,
+                    notAct: notAct,
+                    act: act,
                 }
             }
         }
