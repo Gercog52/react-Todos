@@ -16,11 +16,11 @@ const OFLAINE_TIMER_OFF = 'OFLAINE_TIMER_OFF';
 const OFLAINE_TIMER_ON = 'OFLAINE_TIMER_ON';
 const MOVE_ITEM = 'MOVE_ITEM';
 
-export const moveItem = (idOne, idTwo) => {
+export const moveItem = (dropId, dragId) => {
     return {
         type: MOVE_ITEM,
-        idOne,
-        idTwo
+        dropId,
+        dragId,
     }
     
 }
@@ -243,7 +243,28 @@ const problem_reducer = (state = startStore, actions) => {
     switch (actions.type) {
         case MOVE_ITEM: {
             debugger
-            let idOne = actions.idOne;
+            let full = [...state.data.full];
+            let flag = false;
+            let dragItem;
+            let buf;
+            for (let t=0; t<full.length; t++) {
+                if (actions.dragId === full[t].id) {
+                    dragItem = full[t].id;
+                }
+            }
+            for (let t=0; t<full.length; t++) {
+                if (actions.dropId === full[t].id) {
+                    flag = true;
+                    buf = full[t];
+                    full[t] = dragItem; 
+                } else
+                if (flag) {
+                    let localBuf = full[t];
+                    full[t] = buf;
+                    buf = localBuf;
+                }
+            }
+            /*let idOne = actions.idOne;
             let idTwo = actions.idTwo;
             let one;
             let two;
@@ -271,16 +292,16 @@ const problem_reducer = (state = startStore, actions) => {
                 } else {
                     notAct.push(item);
                 }
-            })
-            console.log(full, '<-');
+            });*/
+            //console.log(full, '<-');
             return {
                 ...state,
                 data: {
                     ...state.data,
                     // do full, act and notAct
-                    full: full,
-                    notAct: notAct,
-                    act: act,
+                    //full: full,
+                    //notAct: notAct,
+                    //act: act,
                 }
             }
         }
