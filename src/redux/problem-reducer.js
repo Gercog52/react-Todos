@@ -223,7 +223,7 @@ export const newTimersThink = (time,id,data) => {
 };
 
 let state = JSON.parse(localStorage.getItem('state'));
-const startStore = (state) ? {...state,initizlis: false,formOn: false,} : {
+const startStore = (false) ? {...state,initizlis: false,formOn: false,} : {
     data: {
         act: [],
         notAct: [],
@@ -242,16 +242,22 @@ const startStore = (state) ? {...state,initizlis: false,formOn: false,} : {
 const problem_reducer = (state = startStore, actions) => {
     switch (actions.type) {
         case MOVE_ITEM: {
-            debugger
             let full = [...state.data.full];
+            let notAct = [];
+            let act = [];
             let flag = false;
             let dragItem;
             let buf;
             for (let t=0; t<full.length; t++) {
                 if (actions.dragId === full[t].id) {
-                    dragItem = full[t].id;
+                    dragItem = full[t];
+                    flag = true;
+                }
+                if (flag) {
+
                 }
             }
+            debugger/*
             for (let t=0; t<full.length; t++) {
                 if (actions.dropId === full[t].id) {
                     flag = true;
@@ -264,6 +270,14 @@ const problem_reducer = (state = startStore, actions) => {
                     buf = localBuf;
                 }
             }
+            for (let t=0; t<full.length; t++) {
+                if (full[t].act === false) {
+                    notAct.push(full[t]);
+                } else {
+                    act.push(full[t]);
+                }
+            }
+            /////////////////////////////////////////////////////////////////////////
             /*let idOne = actions.idOne;
             let idTwo = actions.idTwo;
             let one;
@@ -299,9 +313,9 @@ const problem_reducer = (state = startStore, actions) => {
                 data: {
                     ...state.data,
                     // do full, act and notAct
-                    //full: full,
-                    //notAct: notAct,
-                    //act: act,
+                    full: full,
+                    notAct: notAct,
+                    act: act,
                 }
             }
         }
