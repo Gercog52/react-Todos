@@ -16,11 +16,13 @@ const OFLAINE_TIMER_OFF = 'OFLAINE_TIMER_OFF';
 const OFLAINE_TIMER_ON = 'OFLAINE_TIMER_ON';
 const MOVE_ITEM = 'MOVE_ITEM';
 
-export const moveItem = (dropId, dragId) => {
+export const moveItem = (dropId, dragId, dropIdIndex, dragIdIndex) => {
     return {
         type: MOVE_ITEM,
         dropId,
         dragId,
+        dropIdIndex,
+        dragIdIndex,
     }
     
 }
@@ -251,25 +253,43 @@ const problem_reducer = (state = startStore, actions) => {
             for (let t=0; t<full.length; t++) {
                 if (actions.dragId === full[t].id) {
                     dragItem = full[t];
-                    flag = true;
-                }
-                if (flag) {
-
                 }
             }
-            debugger/*
-            for (let t=0; t<full.length; t++) {
-                if (actions.dropId === full[t].id) {
-                    flag = true;
-                    buf = full[t];
-                    full[t] = dragItem; 
-                } else
-                if (flag) {
-                    let localBuf = full[t];
-                    full[t] = buf;
-                    buf = localBuf;
+            if (actions.dropIdIndex < actions.dragIdIndex) {
+                for (let t=0; t<full.length; t++) {
+                    if (actions.dropId === full[t].id) {
+                        flag = true;
+                        buf = full[t];
+                        full[t] = dragItem; 
+                    } else
+                    if (flag) {
+                        let localBuf = full[t];
+                        full[t] = buf;
+                        buf = localBuf;
+                    }
                 }
-            }
+            } /*else {
+                debugger
+                for (let t=0; t<full.length; t++) {
+                    if (actions.dragId === full[t].id) {
+                        flag = true;
+                        buf = full[t];
+                        full[t] = full[t+1];
+                    } else
+                    if (flag) {
+                        if (full[t].id === actions.dropId) {
+                            let localBuf = full[t];
+                            full[t] = buf;
+                            buf = localBuf;
+                            break;
+                        } else {
+                            let localBuf = full[t];
+                            full[t] = buf;
+                            buf = localBuf;
+                        }
+                    }
+                }
+            }*/
             for (let t=0; t<full.length; t++) {
                 if (full[t].act === false) {
                     notAct.push(full[t]);
