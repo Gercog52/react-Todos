@@ -268,28 +268,35 @@ const problem_reducer = (state = startStore, actions) => {
                         buf = localBuf;
                     }
                 }
-            } /*else {
+            } else {
                 debugger
-                for (let t=0; t<full.length; t++) {
-                    if (actions.dragId === full[t].id) {
+                for (let t=0; t<full.length-1; t++) {
+                    if (actions.dragId === full[t].id && !flag) {
+                        if (full[t+1].id === actions.dropId) {
+                            buf = full[t];
+                            full[t] = full[t+1];
+                            full[t+1] = buf;
+                            break;
+                        }
                         flag = true;
                         buf = full[t];
                         full[t] = full[t+1];
+                        full[t+1] = buf;
                     } else
-                    if (flag) {
-                        if (full[t].id === actions.dropId) {
-                            let localBuf = full[t];
-                            full[t] = buf;
-                            buf = localBuf;
+                    if (flag&&t<full.length-1) {
+                        if (full[t+1].id === actions.dropId) {
+                            buf = full[t];
+                            full[t] = full[t+1];
+                            full[t+1] = buf;
                             break;
-                        } else {
-                            let localBuf = full[t];
-                            full[t] = buf;
-                            buf = localBuf;
                         }
+                        buf = full[t];
+                        full[t] = full[t+1];
+                        full[t+1] = buf;
                     }
                 }
-            }*/
+            }
+            ////////////////////////
             for (let t=0; t<full.length; t++) {
                 if (full[t].act === false) {
                     notAct.push(full[t]);
