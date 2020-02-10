@@ -35,6 +35,10 @@ class FormListContainer extends Component {
         }
     }
     dragEnd(event) {
+        debugger
+        if (!event.destination || !event.source) {
+            return
+        }
         let tasks = (this.props.isData === "Full") ? this.props.data.full : (this.props.isData === 'Act') ?
         this.props.data.act : this.props.data.notAct;               
         console.log(event,tasks, tasks[event.destination.index].id, tasks[event.source.index].id);

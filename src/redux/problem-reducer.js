@@ -244,6 +244,11 @@ const startStore = (false) ? {...state,initizlis: false,formOn: false,} : {
 const problem_reducer = (state = startStore, actions) => {
     switch (actions.type) {
         case MOVE_ITEM: {
+            debugger
+            if (actions.dragId === actions.dropId || !actions.dropId || !actions.dragId) {
+                debugger
+                return state;
+            }
             let full = [...state.data.full];
             let notAct = [];
             let act = [];
@@ -269,7 +274,6 @@ const problem_reducer = (state = startStore, actions) => {
                     }
                 }
             } else {
-                debugger
                 for (let t=0; t<full.length-1; t++) {
                     if (actions.dragId === full[t].id && !flag) {
                         if (full[t+1].id === actions.dropId) {
