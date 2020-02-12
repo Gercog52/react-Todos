@@ -225,7 +225,7 @@ export const newTimersThink = (time,id,data) => {
 };
 
 let state = JSON.parse(localStorage.getItem('state'));
-const startStore = (false) ? {...state,initizlis: false,formOn: false,} : {
+const startStore = (state) ? {...state,initizlis: false,formOn: false,} : {
     data: {
         act: [],
         notAct: [],
