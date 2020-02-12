@@ -53,14 +53,13 @@
     outline: none;
     -webkit-box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
     box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+    border-bottom: 1px solid #cbcbcb;
 }
 .formInput::-webkit-input-placeholder {color:#cbcbcb;font-style: italic}
 .formInput::-moz-placeholder          {color:#cbcbcb;font-style: italic}
 .formInput:-moz-placeholder           {color:#cbcbcb;font-style: italic}
 .formInput:-ms-input-placeholder      {color:#cbcbcb;font-style: italic}
-.item + .item {
-    border-top: none;
-}
+
 .btns {
     padding: 0 18px;
     width: 100%;
@@ -270,7 +269,7 @@
 
 
 .item {
-    border-top: 1px solid #dadada;
+    /*border-top: 1px solid #dadada;*/
     border-bottom: 1px solid #cbcbcb;
     max-width: 550px;
     width: 100%;

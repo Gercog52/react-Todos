@@ -268,6 +268,12 @@ const problem_reducer = (state = startStore, actions) => {
                         full[t] = dragItem; 
                     } else
                     if (flag) {
+                        if (full[t].id === actions.dragId) {
+                            let localBuf = full[t];
+                            full[t] = buf;
+                            buf = localBuf;
+                            break;
+                        }
                         let localBuf = full[t];
                         full[t] = buf;
                         buf = localBuf;
